@@ -1,24 +1,27 @@
-import React, { useState }from 'react'
 
-function Search({ showClear, clearUsers, searchUsers, setAlert }) {
+import React, { useState, useContext }from 'react'
+import AlertContext from '../../context/alert/alertContext';
+import GithubContext from '../../context/github/githubContext'
+
+function Search() {
     
+    const githubContext=useContext(GithubContext);
+    const alertContext=useContext(AlertContext);
+
     const [text,setText]=useState('');    
 
-    // normal function
-    function onChange(e){ 
-        // this.setState({ [e.target.name]:e.target.value });        
+    function onChange(e){         
         setText(e.target.value);
     }
 
-    // arrow function
+  
     const onSubmit= (e) =>{
         e.preventDefault();
         if(text === ''){
-            setAlert('Please enter a name','light');
+            alertContext.setAlert('Please enter a name','light');
         }
-        else{
-            searchUsers(text); 
-            // this.setState({ text: ''});
+        else{  
+            githubContext.searchUsers(text);
             setText('');
         }
     }
@@ -29,7 +32,7 @@ function Search({ showClear, clearUsers, searchUsers, setAlert }) {
                 <input type="text" name="text" placeholder="Search Users" value={text} onChange={onChange}/>
                 <input type="submit" value="Search" className="btn btn-dark btn-block"/>
             </form>
-            {showClear && <button className="btn btn-light btn-block" onClick={clearUsers}>Clear</button>}
+            {githubContext.users.length > 0 && <button className="btn btn-light btn-block" onClick={githubContext.clearUsers}>Clear</button>}
         </div>
     )
 
