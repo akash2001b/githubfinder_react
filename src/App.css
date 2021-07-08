@@ -2,7 +2,7 @@
 
 /* Global Styles */
 :root {
-  --primary-color: #dc3545;
+  --primary-color: #6C0BA9;
   --dark-color: #333333;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -357,6 +357,14 @@ table th {
   opacity: 0.9;
   margin-bottom: 1rem;
 }
+.navbar h1{
+  display: flex;
+  justify-content: center;
+}
+.navbar h1 div{
+  align-self: center;
+  justify-content: center;
+}
 
 .navbar ul {
   display: flex;
@@ -411,4 +419,11 @@ table th {
     text-align: center;
     justify-content: center;
   }
+
+
+}
+
+ion-icon {
+  font-size: 42px;
+  justify-content: center;
 }
